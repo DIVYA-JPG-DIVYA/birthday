@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎂 its her birthday(cherry blossom) 🎂</title>
+
+<style>
+body{
+    margin:0;
+    padding:20px;
+    font-family:Arial,sans-serif;
+    text-align:center;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 0 15px rgba(0,0,0,0.2);
+}
+
+input,button{
+    padding:10px 15px;
+    font-size:16px;
+    margin:10px;
+    border:none;
+    border-radius:8px;
+}
+
+button{
+    background:#ff4081;
+    color:white;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#e73370;
+}
+
+img, video{
+    width:100%;
+    max-width:450px;
+    border-radius:12px;
+}
+
+p{
+    line-height:1.8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>🎁 A Special Surprise Awaits 🎁</h2>
+
+<div id="birthdayCheck">
+    <p>Enter Your Birthday:</p>
+    <input type="date" id="bday">
+    <br>
+    <button onclick="checkBirthday()">Continue</button>
+</div>
+
+<!-- Photo Gallery -->
+<div id="gallery" style="display:none;">
+    <h2>✨ Beautiful Memories ✨</h2>
+    <img id="photo" src="" alt="Memory Photo">
+</div>
+
+<!-- Birthday Video -->
+<div id="videoSection" style="display:none;">
+    <h2>🎥 Birthday Special Video 🎥</h2>
+
+    <video id="birthdayVideo" controls>
+        <source src="InShot_20260607_154021567.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+<!-- Final Message -->
+<div id="finalMessage" style="display:none;">
+
+    <p style="color:#ff1493; font-size:28px; font-weight:bold;">
+        🎂✨ Advance Happy Birthday, cherry! ✨🎂
+    </p>
+
+    <p style="color:#ff4500;">
+        🥳🎉 Wishing you a day filled with happiness, laughter, and unforgettable memories.
+        May all your dreams come true and may success always follow you wherever you go. 🌟💖
+    </p>
+
+    <p style="color:#1e90ff;">
+        🤝 You are truly one of the most trusted friends in my life.
+        I have always believed in you wholeheartedly, no matter the situation.
+        You may be notorious, but you're my favorite adventure.
+         Wishing you a day as amazing and unique as you are.❤️
+        
+    </p>
+
+    <p style="color:#32cd32;">
+        ❤️‍🩹 Many people may have had different opinions, but I always believed that you are a genuine and wonderful friend.
+        Your friendship means so much to me, and I am thankful for every moment, memory, and smile we have shared together. 😊✨
+    </p>
+
+    <p style="color:#8a2be2;">
+        💫 I hope our friendship remains strong forever and that we stay lifelong friends through every phase of life.
+        No matter where life takes us, I will always cherish our bond. 🤗💙
+    </p>
+
+    <p style="color:#ff8c00;">
+        🙏 Thank you for being such an amazing friend.
+        May your life be filled with endless happiness, good health, success, peace, and beautiful moments. 🌹🎊
+    </p>
+
+    <p style="color:#dc143c; font-weight:bold;">
+        🎁🎂 Once again, Advance Happy Birthday, my dear friend! 🎂🎁
+    </p>
+
+    <p style="color:#20b2aa; font-size:22px; font-weight:bold;">
+        ❤️✨ Stay Blessed & Keep Smiling Always! ✨❤️
+    </p>
+
+    <button onclick="showGift()">
+        Open Your Gift 🎁
+    </button>
+
+</div>
+
+</div>
+
+<script>
+
+// Birthday to unlock
+const correctBirthday = "2007-06-11";
+
+// Photos
+const photos = [
+    "cherry photo2.jpg",
+    "cherry photo1.jpg",
+    "cherry photo3.jpg",
+    "cherry photo4.jpg"
+];
+
+let index = 0;
+
+function checkBirthday(){
+
+    const entered = document.getElementById("bday").value;
+
+    if(entered === correctBirthday){
+
+        document.getElementById("birthdayCheck").style.display = "none";
+        document.getElementById("gallery").style.display = "block";
+
+        showPhoto();
+
+    }else{
+        alert("❌ Wrong Birthday Entered");
+    }
+}
+
+function showPhoto(){
+
+    const photo = document.getElementById("photo");
+
+    photo.src = photos[index];
+
+    photo.onerror = function(){
+        alert("Image not found: " + photos[index]);
+    };
+
+    setTimeout(function(){
+
+        index++;
+
+        if(index < photos.length){
+
+            showPhoto();
+
+        }else{
+
+            document.getElementById("gallery").style.display = "none";
+
+            // Show video
+            document.getElementById("videoSection").style.display = "block";
+
+            const video = document.getElementById("birthdayVideo");
+
+            video.play();
+
+            // After video ends
+            video.onended = function(){
+
+                document.getElementById("videoSection").style.display = "none";
+
+                document.getElementById("finalMessage").style.display = "block";
+            };
+        }
+
+    }, 2500);
+}
+
+function showGift(){
+
+    alert(
+        "🎁 Dear cherry with love divya,\n\n" +
+        "My sweet troublemaker, may your day be bright, your heart be light, and your mischievous spirit stay as charming as ever ❤️\n\n" +
+        "You're the reason my life is exciting and unpredictable.Wishing you a day filled with love, laughter, and lots of reasons to smile 🤝\n\n" +
+        "I hope our friendship lasts forever. 💙\n\n" +
+        "Advance Happy Birthday Once Again! 🎂🎉"
+    );
+}
+
+</script>
+
+</body>
+</html>
